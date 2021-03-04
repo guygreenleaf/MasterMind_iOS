@@ -36,7 +36,7 @@ struct GuessArea: View {
     }
     
     func fourBlankCircles() -> [Color] {
-        return [Color.blue, Color.yellow, Color.purple, Color.red, Color.green, Color.black, Color.gray]
+        return [Color.blue, Color.yellow, Color.purple, Color.red, Color.green]
     }
 }
 

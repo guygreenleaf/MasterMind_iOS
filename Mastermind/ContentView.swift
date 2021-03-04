@@ -31,13 +31,21 @@ struct ContentView: View {
                 PaletteArea(colors: colors, circleDiameter: largeCircleDiameter)
                     .frame(width: paletteAreaWidth, height: geometry.size.height, alignment: .center)
                     .position(CGPoint(x: paletteAreaWidth / 2.0, y: geometry.size.height / 2.0))
-
+                
                 VStack {
                     GuessArea(diameter: largeCircleDiameter)
-                            .frame(width: guessAreaWidth, height: geometry.size.height, alignment: .bottom)
+                            .frame(width: guessAreaWidth, height: geometry.size.height-30, alignment: .bottom)
+                    
+                    Text("Submit Guess")
+                        .fontWeight(.bold)
+                        .padding()
+                        .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .top, endPoint: .bottom))
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                     Rectangle() // rectangles can serve as spacers.
                         .frame(width: guessAreaWidth, height: largeCircleDiameter, alignment: .bottom)
                         .opacity(0.0)
+                        .padding()
                 }
             }
     }
