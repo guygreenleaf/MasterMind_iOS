@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class MasterMindViewModel: ObservableObject{
+    @Published var masterMindModel = MastermindModel<Int>()
+    
+    
+    
+    
+    
+    
+    
+}

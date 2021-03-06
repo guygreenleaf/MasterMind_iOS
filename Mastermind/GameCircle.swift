@@ -13,9 +13,16 @@ struct GameCircle: View, Identifiable {
     let id: Int
     
     var body: some View {
-        return Circle()
+        return ZStack{
+            Circle()
+                .frame(width:diameter+5, height:diameter+5)
+            Circle()
+           
             .fill(color)
             .frame(width: diameter, height: diameter)
+            
+        }
     }
+    
 
 }

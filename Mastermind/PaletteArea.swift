@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PaletteArea: View {
     @State private var offset: CGSize = .zero
+    @State private var isShowing = false
+    
     
     let colors: [Color]
     let circleDiameter: CGFloat

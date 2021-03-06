@@ -10,10 +10,15 @@ import SwiftUI
 struct GuessArea: View {
     let circleDiameter: CGFloat
     var guessLevels = [GuessRow]()
+    var currLevelId = 0
+    var possibleColors = [Color.blue, Color.yellow, Color.purple, Color.red, Color.green]
+    
     
     init(diameter: CGFloat) {
         circleDiameter = diameter
-        guessLevels.append(GuessRow(circleDiameter: circleDiameter, colors: fourBlankCircles(), id: 0))
+        guessLevels.append(GuessRow(circleDiameter: circleDiameter, colors: fourBlankCircles(), id: currLevelId))
+        currLevelId += 1
+
     }
     
     
@@ -36,7 +41,7 @@ struct GuessArea: View {
     }
     
     func fourBlankCircles() -> [Color] {
-        return [Color.blue, Color.yellow, Color.purple, Color.red, Color.green]
+        return [.white, .white, .white, .white, .white]
     }
 }
 
@@ -49,7 +54,7 @@ struct GuessRow: View {
         HStack(spacing: 20.0) {
             HStack {
                 ForEach( 0..<4) { idx in
-                    GameCircle(diameter: circleDiameter, color: colors[Int.random(in: 0...colors.count-1)], id: idx)
+                    GameCircle(diameter: circleDiameter, color: colors[0], id: idx)
                 }
             }
             

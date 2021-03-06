@@ -14,6 +14,7 @@ struct FeedbackArea: View {
         length / CGFloat(5.0)
     }
     
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {

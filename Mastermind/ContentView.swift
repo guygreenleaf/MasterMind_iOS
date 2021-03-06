@@ -18,19 +18,19 @@ struct ContentView: View {
     func body(_ geometry: GeometryProxy) -> some View {
         print(geometry.size)
         
-        let colors: [Color] = [.blue, .yellow, .purple, .red, .green, .black, .gray]
+        let colors: [Color] = [.blue, .yellow, .purple, .red, .green]
         
         let paletteAreaWidth = geometry.size.width * 0.20            // 20% goes to palette
         let guessAreaWidth = geometry.size.width - paletteAreaWidth
         let numberOfGuessCircles = 4
         
         let largeCircleDiameter = guessAreaWidth / CGFloat(numberOfGuessCircles + 2) // one for the feedback and one for spaces in between
-        
+    
         return
             HStack(alignment: .center) {
                 PaletteArea(colors: colors, circleDiameter: largeCircleDiameter)
                     .frame(width: paletteAreaWidth, height: geometry.size.height, alignment: .center)
-                    .position(CGPoint(x: paletteAreaWidth / 2.0, y: geometry.size.height / 2.0))
+                    .position(CGPoint(x: paletteAreaWidth / 4, y: geometry.size.height / 2.0))
                 
                 VStack {
                     GuessArea(diameter: largeCircleDiameter)
@@ -49,11 +49,12 @@ struct ContentView: View {
                 }
             }
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+        }
     }
 }
