@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel = MasterMindViewModel<CGFloat>()
+    @StateObject var viewModel = MasterMindViewModel()
     
     var body: some View {
         GeometryReader { geometry in
             body(geometry)
         }
         .padding()
+        
+
     }
     
     

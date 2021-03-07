@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct PaletteArea: View {
     @State private var offset: CGSize = .zero
 
@@ -14,7 +15,7 @@ struct PaletteArea: View {
     
     let colors: [Color]
    let circleDiameter: CGFloat
-    @ObservedObject var viewModel = MasterMindViewModel<CGFloat>()
+    @ObservedObject var viewModel = SingletonVM.sharedInstance.globalViewModel
     
    var body: some View {
                 
@@ -22,11 +23,14 @@ struct PaletteArea: View {
             ForEach(0..<colors.count) { colorIdx in
                 GameCircle(diameter: circleDiameter, color: colors[colorIdx], id: colorIdx)
                     .onTapGesture {
-                        viewModel.storeSelectedColor(colorSelection: colorIdx+1)
+                        viewModel.storeSelectedColor(colorSelection: colorIdx)
+//                        viewModel.storeSelectedColor(colorSelection: colorIdx)
                         print(viewModel.getSelectedColor())
                         
                     }
             }
+            GameCircle(diameter: circleDiameter, color: colors[viewModel.getSelectedColor()], id: 9999)
+                .padding(.top, 275)
         }
     }
 }

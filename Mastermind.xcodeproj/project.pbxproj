@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E38A12B25F4D08C00F43849 /* GuessAreaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38A12A25F4D08C00F43849 /* GuessAreaViewModel.swift */; };
+		9E3E9EB225F580B600B1AC86 /* SingletonVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3E9EB125F580B500B1AC86 /* SingletonVM.swift */; };
 		9E6EDA0B25F0C27D00D5D74C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6EDA0325F0C10A00D5D74C /* ContentView.swift */; };
 		9E6EDA0D25F0C28400D5D74C /* FeedbackArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6EDA0625F0C10A00D5D74C /* FeedbackArea.swift */; };
 		9E6EDA0F25F0C28500D5D74C /* GameCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6EDA0725F0C10A00D5D74C /* GameCircle.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E38A12A25F4D08C00F43849 /* GuessAreaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessAreaViewModel.swift; sourceTree = "<group>"; };
+		9E3E9EB125F580B500B1AC86 /* SingletonVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingletonVM.swift; sourceTree = "<group>"; };
 		9E6EDA0325F0C10A00D5D74C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9E6EDA0425F0C10A00D5D74C /* GuessArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessArea.swift; sourceTree = "<group>"; };
 		9E6EDA0525F0C10A00D5D74C /* PaletteArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteArea.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				9E85F3DD25EFF516009D5DA8 /* Info.plist */,
 				9E85F3D825EFF516009D5DA8 /* Assets.xcassets */,
 				9E85F3DA25EFF516009D5DA8 /* Preview Content */,
+				9E38A12A25F4D08C00F43849 /* GuessAreaViewModel.swift */,
+				9E3E9EB125F580B500B1AC86 /* SingletonVM.swift */,
 			);
 			path = Mastermind;
 			sourceTree = "<group>";
@@ -158,6 +164,8 @@
 			files = (
 				9E6EDA1125F0C28700D5D74C /* GuessArea.swift in Sources */,
 				9E85F3E625EFF565009D5DA8 /* MastermindModel.swift in Sources */,
+				9E3E9EB225F580B600B1AC86 /* SingletonVM.swift in Sources */,
+				9E38A12B25F4D08C00F43849 /* GuessAreaViewModel.swift in Sources */,
 				9E6EDA0F25F0C28500D5D74C /* GameCircle.swift in Sources */,
 				9E6EDA0D25F0C28400D5D74C /* FeedbackArea.swift in Sources */,
 				9E6EDA1325F0C28800D5D74C /* PaletteArea.swift in Sources */,

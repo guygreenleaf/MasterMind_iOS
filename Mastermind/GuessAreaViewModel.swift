@@ -6,3 +6,31 @@
 //
 
 import Foundation
+
+class GuessAreaViewModel:ObservableObject{
+    
+    
+    @Published var mastermindModel = MastermindModel<Int, Float>()
+   
+   
+//    init(){
+//        print(mastermindModel.guessLevels.count)
+//    }
+    
+    func getSelectedColor() -> Int {
+        return mastermindModel.selectedColor
+    }
+    
+    
+    func changeColor(currColor:Int, color:Int){
+        mastermindModel.changeColorCircle(circleToChange: currColor, colorToChangeTo: color)
+        
+    }
+    
+    
+    
+    
+    func getCurrentColorsArray(indx:Int) -> Int{
+        return mastermindModel.userGuess[indx].currentColor
+    }
+}

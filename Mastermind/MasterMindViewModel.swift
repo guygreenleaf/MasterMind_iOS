@@ -7,8 +7,9 @@
 
 import Foundation
 
-class MasterMindViewModel<Diameter>: ObservableObject{
-    @Published var mastermindModel = MastermindModel<Int, Float>(colorForCircle: startGuessRowBlank)
+class MasterMindViewModel: ObservableObject{
+    @Published var mastermindModel = MastermindModel<Int, Float>()
+   
    
 //    init(){
 //        print(mastermindModel.guessLevels.count)
@@ -19,7 +20,7 @@ class MasterMindViewModel<Diameter>: ObservableObject{
     }
     
     func storeSelectedColor(colorSelection: Int) {
-        mastermindModel.selectedColor = colorSelection
+        mastermindModel.changeCurrColor(changeTo: colorSelection)
     }
     func startGame(someGuessRow:GuessRow){
         mastermindModel.guessLevels.append(someGuessRow)
@@ -27,15 +28,26 @@ class MasterMindViewModel<Diameter>: ObservableObject{
     }
     
     
-    
     func getNumLevels()->Int{
         return mastermindModel.guessLevels.count
     }
     
 
+    func changeColor(currColor:Int, color:Int){
+        mastermindModel.changeColorCircle(circleToChange: currColor, colorToChangeTo: color)
+        
+    }
+    
+    func getCurrentColorsArray(indx:Int) -> Int{
+        return mastermindModel.userGuess[indx].currentColor
+    }
     
      func getGuessRows() -> Array<GuessRow> {
         return mastermindModel.guessLevels
+    }
+    
+    func getUserGuess() -> Array<MastermindModel<Int, Float>.Circles>{
+        return mastermindModel.userGuess
     }
    static func startGuessRowBlank(blankCircle: Int) -> Int{
         return blankCircle
