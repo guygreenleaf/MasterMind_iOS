@@ -9,17 +9,23 @@ import SwiftUI
 
 struct PaletteArea: View {
     @State private var offset: CGSize = .zero
-    @State private var isShowing = false
-    
+
+    var currColor = 0
     
     let colors: [Color]
-    let circleDiameter: CGFloat
+   let circleDiameter: CGFloat
+    @ObservedObject var viewModel = MasterMindViewModel<CGFloat>()
     
-    var body: some View {
+   var body: some View {
                 
         return VStack(alignment: .leading, spacing: 10) {
-            ForEach( 0..<colors.count ) { colorIdx in
+            ForEach(0..<colors.count) { colorIdx in
                 GameCircle(diameter: circleDiameter, color: colors[colorIdx], id: colorIdx)
+                    .onTapGesture {
+                        viewModel.storeSelectedColor(colorSelection: colorIdx+1)
+                        print(viewModel.getSelectedColor())
+                        
+                    }
             }
         }
     }

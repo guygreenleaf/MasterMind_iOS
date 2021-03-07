@@ -9,14 +9,19 @@ import SwiftUI
 
 struct GuessArea: View {
     let circleDiameter: CGFloat
+    //MAKE GUESSROW COME FROM MODEL!
     var guessLevels = [GuessRow]()
-    var currLevelId = 0
-    var possibleColors = [Color.blue, Color.yellow, Color.purple, Color.red, Color.green]
     
+    @ObservedObject var viewModel = MasterMindViewModel<CGFloat>()
+    //currLevelID can go into VIEWMODEL
+    var currLevelId = 0
+    //This can stay
+    var possibleColors = [Color.white, Color.blue, Color.yellow, Color.purple, Color.red, Color.green]
+
     
     init(diameter: CGFloat) {
         circleDiameter = diameter
-        guessLevels.append(GuessRow(circleDiameter: circleDiameter, colors: fourBlankCircles(), id: currLevelId))
+        viewModel.startGame(someGuessRow: GuessRow(circleDiameter: circleDiameter, colors: fourBlankCircles(), id: 0))
         currLevelId += 1
 
     }
@@ -26,7 +31,7 @@ struct GuessArea: View {
         VStack {
             Spacer()
 
-            ForEach( 0..<guessLevels.count ) { idx in
+            ForEach( 0..<viewModel.getNumLevels()) { idx in
                 VStack {
                     Divider()
                     guessViewFor(level: idx)
@@ -37,18 +42,21 @@ struct GuessArea: View {
     
     func guessViewFor(level: Int) -> some View {
 //        print("guessViewFor level \(level), size: \(size) ")
-        return  guessLevels[level]
+        return viewModel.getGuessRows()[level]
     }
     
     func fourBlankCircles() -> [Color] {
         return [.white, .white, .white, .white, .white]
     }
+    
+    
 }
 
 struct GuessRow: View {
     let circleDiameter: CGFloat
     var colors: [Color]
     var id: Int
+    
     
     var body: some View {
         HStack(spacing: 20.0) {

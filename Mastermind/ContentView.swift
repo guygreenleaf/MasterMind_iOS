@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel = MasterMindViewModel<CGFloat>()
+    
     var body: some View {
         GeometryReader { geometry in
             body(geometry)
@@ -15,10 +17,13 @@ struct ContentView: View {
         .padding()
     }
     
+    
+    
     func body(_ geometry: GeometryProxy) -> some View {
         print(geometry.size)
         
-        let colors: [Color] = [.blue, .yellow, .purple, .red, .green]
+        
+        let colors: [Color] = [ .blue, .yellow, .purple, .red, .green]
         
         let paletteAreaWidth = geometry.size.width * 0.20            // 20% goes to palette
         let guessAreaWidth = geometry.size.width - paletteAreaWidth
@@ -42,6 +47,13 @@ struct ContentView: View {
                         .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .top, endPoint: .bottom))
                         .foregroundColor(.white)
                         .cornerRadius(10)
+                        .onTapGesture {
+                            
+                            print("TappedSubmit")
+//                            viewModel.startGame(someGuessRow: GuessRow(circleDiameter: largeCircleDiameter, colors: colors, id: 1))
+                        }
+                    
+                    
                     Rectangle() // rectangles can serve as spacers.
                         .frame(width: guessAreaWidth, height: largeCircleDiameter, alignment: .bottom)
                         .opacity(0.0)
