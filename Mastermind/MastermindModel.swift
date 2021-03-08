@@ -15,7 +15,12 @@ struct MastermindModel<Colors, Diameter>{
     
     var selectedColor = 0
    
+    
+    var guessRowCircles:Array<GameCircle> = []
+    
     var userGuess:Array<Circles> = []
+    
+    
     
     var numCirclesInRow:Int = 4
     
@@ -38,11 +43,17 @@ struct MastermindModel<Colors, Diameter>{
             circleId += 1
         }
     }
+
+    mutating func newCircles(){
+        userGuess.append(Circles(color: 0 , currentColor: 0, id: circleId))
+        circleId += 1
+    }
     
     mutating func changeColorCircle(circleToChange:Int, colorToChangeTo:Int){
-        
+        currColors[circleToChange] = colorToChangeTo
         userGuess[circleToChange].currentColor = colorToChangeTo
     }
+    
     struct Circles:Identifiable{
         let color: Int
         var currentColor: Int
@@ -54,7 +65,9 @@ struct MastermindModel<Colors, Diameter>{
     }
     
     
-    var solution = [Int.random(in:0...4), Int.random(in:0...4), Int.random(in:0...4), Int.random(in:0...4)]
+//    var solution = [Int.random(in:0...4), Int.random(in:0...4), Int.random(in:0...4), Int.random(in:0...4)]
+    
+    var solution = [2, 2, 2, 2]
 }
 
 

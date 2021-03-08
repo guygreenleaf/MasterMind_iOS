@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var viewModel = MasterMindViewModel()
+     var viewModel = SingletonVM.sharedInstance.globalViewModel
     
     var body: some View {
         GeometryReader { geometry in
@@ -26,7 +26,7 @@ struct ContentView: View {
         
         
         let colors: [Color] = [ .blue, .yellow, .purple, .red, .green]
-        
+        let possibleColors: [Color] = [ .white, .blue, .yellow, .purple, .red, .green]
         let paletteAreaWidth = geometry.size.width * 0.20            // 20% goes to palette
         let guessAreaWidth = geometry.size.width - paletteAreaWidth
         let numberOfGuessCircles = 4
@@ -52,6 +52,16 @@ struct ContentView: View {
                         .onTapGesture {
                             
                             print("TappedSubmit")
+                            viewModel.incrementLevelID()
+                            SingletonVM.sharedInstance.globalViewModel.startGame(someGuessRow: GuessRow(circleDiameter: largeCircleDiameter, colors: [possibleColors[viewModel.getCurrColors()[0]], possibleColors[viewModel.getCurrColors()[1]], possibleColors[viewModel.getCurrColors()[2]], possibleColors[viewModel.getCurrColors()[3]]], id: viewModel.getLevelID()))
+                            
+                            viewModel.createNewCircles()
+                            
+                            if(viewModel.checkWin()){
+                                print("winner!")
+                            }
+//
+                            print(viewModel.getCurrColors())
 //                            viewModel.startGame(someGuessRow: GuessRow(circleDiameter: largeCircleDiameter, colors: colors, id: 1))
                         }
                     

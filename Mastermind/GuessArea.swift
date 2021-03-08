@@ -12,7 +12,7 @@ struct GuessArea: View {
     //MAKE GUESSROW COME FROM MODEL!
     var guessLevels = [GuessRow]()
     
-    @ObservedObject var viewModel = MasterMindViewModel()
+    @ObservedObject var viewModel = SingletonVM.sharedInstance.globalViewModel
     //currLevelID can go into VIEWMODEL
     var currLevelId = 0
     //This can stay
@@ -31,11 +31,12 @@ struct GuessArea: View {
         VStack {
             Spacer()
 
-            ForEach( 0..<viewModel.getNumLevels()) { idx in
+            ForEach(viewModel.getGuessRows()) { row in
                 VStack {
                     Divider()
-                    
-                    guessViewFor(level: idx)
+                    row
+//                    viewModel.getGuessRows()[idx]
+//                    guessViewFor(level: idx)
                 }
             }
         }
@@ -47,13 +48,13 @@ struct GuessArea: View {
     }
     
     func fourBlankCircles() -> [Color] {
-        return [.white, .white, .white, .white, .white]
+        return [.white, .white, .white, .white, .white, .white]
     }
     
     
 }
 
-struct GuessRow: View {
+struct GuessRow: View, Identifiable {
     
 //    @ObservedObject var viewModel = GuessAreaViewModel()
     let circleDiameter: CGFloat
@@ -64,19 +65,19 @@ struct GuessRow: View {
     
     @ObservedObject var viewModel = SingletonVM.sharedInstance.globalViewModel
 
+    
     var body: some View {
         HStack(spacing: 20.0) {
             HStack {
                 ForEach( 0..<4) { idx in
                     
-                    GameCircle(diameter: circleDiameter, color: possibleColors[viewModel.getCurrentColorsArray(indx: idx)], id: idx)
+                    GameCircle(diameter: circleDiameter, color: possibleColors[viewModel.getCurrentColorsArray(indx: idx)], id: Int.random(in: 5...50))
+                    
                         .onTapGesture {
                             viewModel.changeColor(currColor: idx, color: viewModel.getSelectedColor()+1)
-                            print(viewModel.getSelectedColor())
-                            print(viewModel.getGuessRows())
+                            
                             print(viewModel.getUserGuess())
-//                            print(viewModel.getSelectedColor())
-//                            print(viewModel.mastermindModel.selectedColor)
+
                         }
                 }
             }

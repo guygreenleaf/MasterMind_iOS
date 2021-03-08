@@ -15,6 +15,7 @@ class MasterMindViewModel: ObservableObject{
 //        print(mastermindModel.guessLevels.count)
 //    }
     
+
     func getSelectedColor() -> Int {
         return mastermindModel.selectedColor
     }
@@ -27,6 +28,23 @@ class MasterMindViewModel: ObservableObject{
         print(mastermindModel.guessLevels)
     }
     
+    func incrementLevelID(){
+        mastermindModel.currLevelId += 1
+    }
+    
+
+    func getLevelID()->Int{
+        return mastermindModel.currLevelId
+    }
+    
+    func incrementCircleID(){
+        mastermindModel.circleId += 1
+    }
+    
+    func getCircleID()->Int{
+        mastermindModel.circleId += 1 
+        return mastermindModel.circleId
+    }
     
     func getNumLevels()->Int{
         return mastermindModel.guessLevels.count
@@ -36,6 +54,16 @@ class MasterMindViewModel: ObservableObject{
     func changeColor(currColor:Int, color:Int){
         mastermindModel.changeColorCircle(circleToChange: currColor, colorToChangeTo: color)
         
+    }
+    func getCurrColors()->Array<Int>{
+        return mastermindModel.currColors
+    }
+    
+    func resetColors(){
+        mastermindModel.currColors[0] = 0
+        mastermindModel.currColors[1] = 0
+        mastermindModel.currColors[2] = 0
+        mastermindModel.currColors[3] = 0
     }
     
     func getCurrentColorsArray(indx:Int) -> Int{
@@ -49,8 +77,22 @@ class MasterMindViewModel: ObservableObject{
     func getUserGuess() -> Array<MastermindModel<Int, Float>.Circles>{
         return mastermindModel.userGuess
     }
+    
+    func createNewCircles(){
+        mastermindModel.newCircles()
+    }
+    
    static func startGuessRowBlank(blankCircle: Int) -> Int{
         return blankCircle
+    }
+    
+    func checkWin()-> Bool{
+        if(mastermindModel.currColors[0] == mastermindModel.solution[0] && mastermindModel.currColors[1] == mastermindModel.solution[1] &&
+            mastermindModel.currColors[2] == mastermindModel.solution[2] &&
+            mastermindModel.currColors[3] == mastermindModel.solution[3]){
+            return true
+        }
+        return false
     }
     
     
